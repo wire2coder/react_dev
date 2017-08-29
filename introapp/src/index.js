@@ -1,47 +1,37 @@
-// import React
 var React = require('react');
-
-// import ReactDom
 var ReactDom = require('react-dom');
+var createClass = require('create-react-class');
 
+// var Component1 = function(props) {   
+//     var style = {
+//         color: props.color
+//     }
 
-// React.createElement(type, attributes, child1, child2, child3)
-// React.createElement(type, attributes, ...children)
+//     return ( 
+//         <div style={style} >
+//         <h4>{props.greeting}</h4>  
+//         </div>
+//     );
+// }
 
-// using JSX instead of React.createElement
-// var component1 = <h1>Let us make 90000 dollars</h1>;
+var Component1 = createClass({
+    // this is a class... so comes with a CLASS???
+    // 'THIS' 'THIS' object!
 
-// make a component out of function
-// CAPITALISE your component name to tell React that it is not a 'native' component
-
-var Component1 = function(props) {
-    // a function that returns JSX, Javascript Syntax Extension
-
-    var style = {
-        color: props.color
+    // make a render 'method'
+    render: function(props) {
+        return (
+            <div>
+                <h4> {this.props.greeting} </h4>
+            </div>
+        );
     }
+})
 
-    return ( 
-        <div style={style} >
-        <h4>{props.greeting}</h4>  
-        </div>
-    );
-}
-
-// render the component we just created
-// need ReactDom library to render component
-// ReactDom.render([what], [where])
-
-// ReactDom.render(component1, document.getElementById('root'));
-// ReactDom.render(React.createElement(Component1), document.getElementById('root') );
-// ReactDom.render(<Component1></Component1>, document.getElementById('root'));
-
-// Now are we adding properties to the Component/function
 ReactDom.render(
-    // greeting='hello' is attached to object 'props'
     <div>
-    <Component1 greeting='Let us make a lot of money' color='red' />
-    <Component1 greeting='Let us be bold and kind' color='blue' />
+        <Component1 greeting='Let us make a lot of money' color='red' />
+        <Component1 greeting='Let us be bold and kind' color='blue' />
     </div>,
     document.getElementById('root') 
 );
