@@ -8,17 +8,20 @@ var createClass = require('create-react-class');
 var Title = createClass({
     render: function() {
         // return JSX
+        // don't forget, this is a CLASS and CLASS needs what? 'THIS'
+        // each component has it's own property/props
         return (
-            <h4>Friends</h4>
+            <h4> {this.props.title1} </h4>
         );
     }
-})
+});
 
 // class component picture
 var Picture = createClass({
     render: function() {
+        // weird, you don't need "" in src
         return (
-            <img src="https://www.movieposter.com/posters/archive/main/52/MPW-26106" />
+            <img src={this.props.link1} alt='pic' />
         );
     }
 })
@@ -28,26 +31,33 @@ var Info = createClass({
     render: function() {
         return (
             <div>
-                <p>Follows the personal and professional lives of six 20 to 30-something-year-old friends living in Manhattan.</p>
-                <h4>IMDB Rating: 9.0</h4>
+                <p> {this.props.info1} </p>
+                <h4>IMDB Rating: {this.props.rating1} </h4>
+                <button> Next </button>
             </div>
             
         );
     }
-})
+});
 
 
 // class component the wrapper
+// CLASS, 'THIS', PROPS
 var Show = createClass({
     render: function() {
         return (
             <div className="text-center">
-                <Title />
-                <Picture />
-                <Info />
+                <Title title1 = {this.props.showdata.title} />
+                <Picture link1 = {this.props.showdata.poster} />
+                <Info 
+                    info1 = {this.props.showdata.plot}
+                    rating1 = {this.props.showdata.imdbRating}
+                 />
             </div>
-        )
+        );
     }
-})
+});
+
+
 
 module.exports = Show;

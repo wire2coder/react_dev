@@ -1,21 +1,18 @@
 var React = require('react');
 var ReactDom = require('react-dom');
-var CreateClass = require('create-react-class');
 
 var Show = require('./show.js');
-
-var TestComponent = CreateClass({
-    render: function() {
-        return (
-            <div>
-                <h4>testing</h4>
-            </div>
-        );
-    }
-})
+var showdata = require('./shows.json');
 
 // pick the ID root and render
+// attaching showData to the props of component Show
+// ReactDom returns only 1 object, put everything in <div>
 ReactDom.render(
-    <Show />
+    <div>
+        <Show showdata={showdata[0]} />    
+        <Show showdata={showdata[1]} />    
+        <Show showdata={showdata[2]} />    
+    </div>
+    
     ,document.getElementById('root') 
 );
