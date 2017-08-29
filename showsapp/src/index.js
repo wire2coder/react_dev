@@ -9,9 +9,10 @@ var showdata = require('./shows.json');
 // ReactDom returns only 1 object, put everything in <div>
 ReactDom.render(
     <div>
-        <Show showdata={showdata[0]} />    
-        <Show showdata={showdata[1]} />    
-        <Show showdata={showdata[2]} />    
+        <Show 
+            showdata = {showdata}
+            showIndex = {0}
+         />     
     </div>
     
     ,document.getElementById('root') 
