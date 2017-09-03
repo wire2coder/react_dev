@@ -1,14 +1,14 @@
 var React = require('react');
 var ReactDom = require('react-dom');
 
-var style1 = require('./index.css');
+// var style1 = require('./index.css');
 
-var Game = require('./Game.js');
+var HomePage = require('./components/HomePage.js');
 
 // render the component
 ReactDom.render(
     <div>
-        <Game className={style1} />
+        <HomePage />
     </div>
     ,document.getElementById('root')
 
