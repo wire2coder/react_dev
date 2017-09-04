@@ -22,15 +22,91 @@ var btnStyle = {
 // make a new component, name Title
 class HomePage extends React.Component {
     
-    // need 2 buttonClickHandler
+    startOverClickHandler() {
+        this.setState(function(prev) {
+            return ({
+                catLikeCount: 0,
+                dogLikeCount: 0
+            });
+        });
+    }
+
+    // a cat or a dog?
+    likeClickHandler(event) {
+        // so the event thing.
+        // in <PetComponent>, the button, when you click it
+        // it generates an object call 'event' and with property
+        // 'target' and 'value'
+        // and we set the 'value' to be this.props.petname
+        // so event.target.value = this.props.petname
+        
+
+        // check pet name, increase pet score, for cat
+        if (event.target.value === 'Super Cat') {
+            this.setState(function(prevState) {
+                // remeber, prevState is the same as this.state
+                
+                return ({ 
+                    catLikeCount: prevState.catLikeCount + 1,
+                    dogLikeCount: prevState.dogLikeCount
+                });
+            });
+
+            // object.setState(function(prevState){return state})
+            // is asynchronus
+
+        } // check pet name, increase pet score, for cat
+        else if (event.target.value === 'Cynical Dog') {
+            this.setState(function(prevState) {
+                // return a new data/state
+                return ({
+                    catLikeCount: prevState.catLikeCount,
+                    dogLikeCount: prevState.dogLikeCount + 1
+                });
+            });
+        }
+        
+    }
+
+    // a cat or a dog?
+    dislikeClickHandler(event) {
+        // check pet name
+        // decrease pet score
+
+            // check pet name, increase pet score, for cat
+            if (event.target.value === 'Super Cat') {
+                this.setState(function(prevState) {
+                    // remeber, prevState is the same as this.state
+                    
+                    return ({ 
+                        catLikeCount: prevState.catLikeCount - 1,
+                        dogLikeCount: prevState.dogLikeCount
+                    });
+                });
+    
+                // object.setState(function(prevState){return state})
+                // is asynchronus
+    
+            } // check pet name, increase pet score, for cat
+            else if (event.target.value === 'Cynical Dog') {
+                this.setState(function(prevState) {
+                    // return a new data/state
+                    return ({
+                        catLikeCount: prevState.catLikeCount,
+                        dogLikeCount: prevState.dogLikeCount - 1
+                    });
+                });
+            }
+
+    }
+
     winnnerClickHandler() {
         // console.log(this.catData)
         // console.log(this.dogData)
 
         // accessing Cat instance of <PetComponent>
-        var catLikeCounter = this.catData.state.likeCounts;
-        // accessing Dog instance of <PetComponent>
-        var dogLikeCounter = this.dogData.state.likeCounts;
+        var catLikeCounter = this.state.catLikeCount;
+        var dogLikeCounter = this.state.dogLikeCount;
 
         if (catLikeCounter > dogLikeCounter) {
             console.log(`cat is the winner`);
@@ -42,15 +118,23 @@ class HomePage extends React.Component {
         
     }
 
-    startOverClickHandler() {
-    
-    }
-
     constructor(props) {
         super(props);
 
+        // initialize state data for <HomePage>
+        this.state = {
+            catLikeCount: 0,
+            dogLikeCount: 0
+        }
+
         // glue winnerClickHandler to <HomePage>
         this.winnnerClickHandler = this.winnnerClickHandler.bind(this);
+        this.startOverClickHandler = this.startOverClickHandler.bind(this);
+
+        this.likeClickHandler = this.likeClickHandler.bind(this);
+        this.dislikeClickHandler = this.dislikeClickHandler.bind(this);
+        
+        
     }
 
     render() {
@@ -63,14 +147,18 @@ class HomePage extends React.Component {
                 </h1>
                 <div style={{marginTop: 60, textAlign: 'center'}} >
                     <PetComponent 
-                        ref={function(catComponentInstData){this.catData = catComponentInstData}.bind(this)}
+                        likeCount={this.state.catLikeCount}
+                        likeClick={this.likeClickHandler}
+                        dislikeClick={this.dislikeClickHandler}
                         petname={'Super Cat'} 
                         petimageurl={catimageurl} 
                         petalt={'cat picture'} 
                     />
 
                     <PetComponent
-                        ref={function(dogComponentInstData){this.dogData = dogComponentInstData}.bind(this)}
+                        likeCount={this.state.dogLikeCount}
+                        likeClick={this.likeClickHandler}
+                        dislikeClick={this.dislikeClickHandler}
                         petname={'Cynical Dog'}
                         petimageurl={dogimageurl}
                         petalt={'dog picture'}
@@ -79,7 +167,7 @@ class HomePage extends React.Component {
                 
                 <div style={{textAlign: 'center'}}>
                     <button style={btnStyle} onClick={this.winnnerClickHandler} > Show Winner </button>
-                    <button style={btnStyle}> Start Over </button>
+                    <button style={btnStyle} onClick={this.startOverClickHandler} > Start Over </button>
                 </div>
                 
             </div>
