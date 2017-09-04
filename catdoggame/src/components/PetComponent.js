@@ -22,15 +22,20 @@ class PetComponent extends React.Component {
     likeClick() {
         // console.log(`${this.props.petname} + like`);
         // change the state data
-        this.setState({
-            likeCounts: this.state.likeCounts += 1
+        this.setState(function(prevState, props) {
+            // remember... prevState is this.state and the CURRENT state/data
+            return {
+                likeCounts: prevState.likeCounts + 1
+            }
         }) 
     }
 
     dislikeClick() {
         // console.log(`${this.props.petname} + dislike`);
-        this.setState({
-            likeCounts: this.state.likeCounts -= 1
+        this.setState(function(prevState, props) {
+            return {
+                likeCounts: prevState.likeCounts - 1
+            }
         }) 
     }
 
