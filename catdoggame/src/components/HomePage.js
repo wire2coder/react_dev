@@ -26,7 +26,9 @@ class HomePage extends React.Component {
         this.setState(function(prev) {
             return ({
                 catLikeCount: 0,
-                dogLikeCount: 0
+                dogLikeCount: 0,
+                catString: '',
+                dogString: ''
             });
         });
     }
@@ -47,8 +49,7 @@ class HomePage extends React.Component {
                 // remeber, prevState is the same as this.state
                 
                 return ({ 
-                    catLikeCount: prevState.catLikeCount + 1,
-                    dogLikeCount: prevState.dogLikeCount
+                    catLikeCount: prevState.catLikeCount + 1
                 });
             });
 
@@ -60,7 +61,6 @@ class HomePage extends React.Component {
             this.setState(function(prevState) {
                 // return a new data/state
                 return ({
-                    catLikeCount: prevState.catLikeCount,
                     dogLikeCount: prevState.dogLikeCount + 1
                 });
             });
@@ -79,8 +79,7 @@ class HomePage extends React.Component {
                     // remeber, prevState is the same as this.state
                     
                     return ({ 
-                        catLikeCount: prevState.catLikeCount - 1,
-                        dogLikeCount: prevState.dogLikeCount
+                        catLikeCount: prevState.catLikeCount - 1
                     });
                 });
     
@@ -92,7 +91,6 @@ class HomePage extends React.Component {
                 this.setState(function(prevState) {
                     // return a new data/state
                     return ({
-                        catLikeCount: prevState.catLikeCount,
                         dogLikeCount: prevState.dogLikeCount - 1
                     });
                 });
@@ -109,11 +107,20 @@ class HomePage extends React.Component {
         var dogLikeCounter = this.state.dogLikeCount;
 
         if (catLikeCounter > dogLikeCounter) {
-            console.log(`cat is the winner`);
+            this.setState({
+                catString: 'Winner',
+                dogString: 'Lobtser'
+        })
         } else if (catLikeCounter < dogLikeCounter) {
-            console.log(`dog is the winner`);
+            this.setState({
+                catString: 'Lobtser',
+                dogString: 'Winner'
+            })
         } else if (catLikeCounter === dogLikeCounter) {
-            console.log(`The result is a Tie`)
+            this.setState({
+                catString: 'TIE',
+                dogString: 'TIE'
+            })
         }
         
     }
@@ -124,7 +131,9 @@ class HomePage extends React.Component {
         // initialize state data for <HomePage>
         this.state = {
             catLikeCount: 0,
-            dogLikeCount: 0
+            dogLikeCount: 0,
+            catString: '',
+            dogString: ''
         }
 
         // glue winnerClickHandler to <HomePage>
@@ -150,6 +159,9 @@ class HomePage extends React.Component {
                         likeCount={this.state.catLikeCount}
                         likeClick={this.likeClickHandler}
                         dislikeClick={this.dislikeClickHandler}
+
+                        winningString={this.state.catString}
+
                         petname={'Super Cat'} 
                         petimageurl={catimageurl} 
                         petalt={'cat picture'} 
@@ -159,6 +171,9 @@ class HomePage extends React.Component {
                         likeCount={this.state.dogLikeCount}
                         likeClick={this.likeClickHandler}
                         dislikeClick={this.dislikeClickHandler}
+
+                        winningString={this.state.dogString}
+
                         petname={'Cynical Dog'}
                         petimageurl={dogimageurl}
                         petalt={'dog picture'}

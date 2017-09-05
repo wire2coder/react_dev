@@ -18,15 +18,33 @@ var compStyle = {
 // changing <PetComponent> from class to function component
 var PetComponent = function(props) {
 
+    // default text color is black
+    var styleResult = null;
+    var buttonDisabled = false;
+
+    if (props.winningString !== '') {
+
+        if (props.winningString === 'Winner') {
+            styleResult = {color: 'green'}
+        } else if (props.winningString === 'Lobtser') {
+            styleResult = {color: 'red'}
+        }
+
+        buttonDisabled = true;
+    }
+    // winner text is green
+    // not winner text is red
+    
     // return JSX
     return (
         <div style={compStyle} >
-            <h3> {props.petname} like: {props.likeCount} </h3>
+            <h2 style={styleResult} > {props.winningString} </h2>
+            <h3> {props.petname} </h3>
             <img style={{width: 400, height: 400}} 
             src={props.petimageurl} alt={props.petalt} />
             <br />
-            <button style={btnStyle} value={props.petname} onClick={ props.likeClick } > Like </button>
-            <button style={btnStyle} value={props.petname} onClick={ props.dislikeClick } > Dislike </button>
+            <button style={btnStyle} disabled={buttonDisabled} value={props.petname} onClick={ props.likeClick } > Like </button>
+            <button style={btnStyle} disabled={buttonDisabled} value={props.petname} onClick={ props.dislikeClick } > Dislike </button>
         </div>
     )
 }
