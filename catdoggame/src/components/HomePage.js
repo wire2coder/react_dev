@@ -181,7 +181,11 @@ class HomePage extends React.Component {
                 </div>
                 
                 <div style={{textAlign: 'center'}}>
-                    <button style={btnStyle} onClick={this.winnnerClickHandler} > Show Winner </button>
+                    { !this.state.dogString && 
+                        <button style={btnStyle} onClick={this.winnnerClickHandler} > Show Winner </button> 
+                    }
+
+                    
                     <button style={btnStyle} onClick={this.startOverClickHandler} > Start Over </button>
                 </div>
                 

@@ -39,7 +39,12 @@ var PetComponent = function(props) {
     return (
         <div style={compStyle} >
             <h2 style={styleResult} > {props.winningString} </h2>
-            <h3> {props.petname} </h3>
+
+            { (!props.winningString)
+                ? (<h3> {props.petname} </h3>)
+                : (<h3> {props.petname} like: {props.likeCount}</h3>)
+            }
+
             <img style={{width: 400, height: 400}} 
             src={props.petimageurl} alt={props.petalt} />
             <br />
