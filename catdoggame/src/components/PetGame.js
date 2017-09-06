@@ -24,10 +24,11 @@ var DOG_URL = `http://localhost:63000/dog?api_key=${API_KEY}`;
 class PetGame extends React.Component {
     
     startOverClickHandler() {
+        this.catLikeCount = 0;
+        this.dogLikeCount = 0;
+
         this.setState(function(prev) {
             return ({
-                catLikeCount: 0,
-                dogLikeCount: 0,
                 catString: '',
                 dogString: ''
             });
@@ -47,13 +48,7 @@ class PetGame extends React.Component {
         // check pet name, increase pet score, for cat
         if (event.target.value === 'Super Cat') {
             this.fetchCatDogImages();
-
-            this.setState(function(prevState) {
-                // remeber, prevState is the same as this.state
-                return ({ 
-                    catLikeCount: prevState.catLikeCount + 1
-                });
-            });
+            this.catLikeCount = this.catLikeCount + 1;
 
             // object.setState(function(prevState){return state})
             // is asynchronus
@@ -62,12 +57,7 @@ class PetGame extends React.Component {
         else if (event.target.value === 'Cynical Dog') {
             this.fetchCatDogImages();
 
-            this.setState(function(prevState) {
-                // return a new data/state
-                return ({
-                    dogLikeCount: prevState.dogLikeCount + 1
-                });
-            });
+            this.dogLikeCount = this.dogLikeCount + 1;
         }
         
     }
@@ -81,14 +71,7 @@ class PetGame extends React.Component {
             if (event.target.value === 'Super Cat') {
                 this.fetchCatDogImages();
 
-                this.setState(function(prevState) {
-                    // remeber, prevState is the same as this.state
-                    
-                    return ({ 
-                        catLikeCount: prevState.catLikeCount - 1
-                    });
-                });
-    
+                this.catLikeCount= this.catLikeCount - 1;
                 // object.setState(function(prevState){return state})
                 // is asynchronus
     
@@ -96,12 +79,7 @@ class PetGame extends React.Component {
             else if (event.target.value === 'Cynical Dog') {
                 this.fetchCatDogImages();
 
-                this.setState(function(prevState) {
-                    // return a new data/state
-                    return ({
-                        dogLikeCount: prevState.dogLikeCount - 1
-                    });
-                });
+                this.dogLikeCount = this.dogLikeCount - 1;
             }
 
     }
@@ -111,8 +89,8 @@ class PetGame extends React.Component {
         // console.log(this.dogData)
 
         // accessing Cat instance of <PetComponent>
-        var catLikeCounter = this.state.catLikeCount;
-        var dogLikeCounter = this.state.dogLikeCount;
+        var catLikeCounter = this.catLikeCount;
+        var dogLikeCounter = this.dogLikeCount;
 
         if (catLikeCounter > dogLikeCounter) {
             this.setState({
@@ -137,9 +115,10 @@ class PetGame extends React.Component {
         super(props);
 
         // initialize state data for <HomePage>
+        this.catLikeCount = 0;
+        this.dogLikeCount = 0;
+
         this.state = {
-            catLikeCount: 0,
-            dogLikeCount: 0,
             catString: '',
             dogString: '',
             dogImageUrl: '',
@@ -201,7 +180,7 @@ class PetGame extends React.Component {
            
                 <div style={{marginTop: 60, textAlign: 'center'}} >
                     <PetComponent 
-                        likeCount={this.state.catLikeCount}
+                        likeCount={this.catLikeCount}
                         likeClick={this.likeClickHandler}
                         dislikeClick={this.dislikeClickHandler}
 
@@ -213,7 +192,7 @@ class PetGame extends React.Component {
                     />
 
                     <PetComponent
-                        likeCount={this.state.dogLikeCount}
+                        likeCount={this.dogLikeCount}
                         likeClick={this.likeClickHandler}
                         dislikeClick={this.dislikeClickHandler}
 
