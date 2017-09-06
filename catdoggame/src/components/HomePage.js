@@ -53,9 +53,10 @@ class HomePage extends React.Component {
 
         // check pet name, increase pet score, for cat
         if (event.target.value === 'Super Cat') {
+            this.fetchCatDogImages();
+
             this.setState(function(prevState) {
                 // remeber, prevState is the same as this.state
-                
                 return ({ 
                     catLikeCount: prevState.catLikeCount + 1
                 });
@@ -66,6 +67,8 @@ class HomePage extends React.Component {
 
         } // check pet name, increase pet score, for cat
         else if (event.target.value === 'Cynical Dog') {
+            this.fetchCatDogImages();
+
             this.setState(function(prevState) {
                 // return a new data/state
                 return ({
@@ -83,6 +86,8 @@ class HomePage extends React.Component {
 
             // check pet name, increase pet score, for cat
             if (event.target.value === 'Super Cat') {
+                this.fetchCatDogImages();
+
                 this.setState(function(prevState) {
                     // remeber, prevState is the same as this.state
                     
@@ -96,6 +101,8 @@ class HomePage extends React.Component {
     
             } // check pet name, increase pet score, for cat
             else if (event.target.value === 'Cynical Dog') {
+                this.fetchCatDogImages();
+
                 this.setState(function(prevState) {
                     // return a new data/state
                     return ({
