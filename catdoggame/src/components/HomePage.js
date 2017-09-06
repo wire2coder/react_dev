@@ -1,11 +1,13 @@
 var React = require('react');
+var axios = require('axios');
+
 var PetComponent = require('./PetComponent.js');
 
 // make a object for CSS
 // the name is in camelCase instead of camel-case
 
-var catimageurl = "https://rr.img.naver.jp/mig?src=http%3A%2F%2Fimgcc.naver.jp%2Fkaze%2Fmission%2FUSER%2F20141019%2F25%2F2403495%2F5%2F330x362xb8cd3fd5235f86e1ed47cc28.jpg%2F300%2F600&twidth=300&theight=600&qlt=80&res_format=jpg&op=r";
-var dogimageurl = "https://i.ytimg.com/vi/b1JRaGJpzc8/maxresdefault.jpg";
+// var catimageurl1 = "https://rr.img.naver.jp/mig?src=http%3A%2F%2Fimgcc.naver.jp%2Fkaze%2Fmission%2FUSER%2F20141019%2F25%2F2403495%2F5%2F330x362xb8cd3fd5235f86e1ed47cc28.jpg%2F300%2F600&twidth=300&theight=600&qlt=80&res_format=jpg&op=r";
+// var dogimageurl1 = "https://i.ytimg.com/vi/b1JRaGJpzc8/maxresdefault.jpg";
 
 var style = {
     textAlign: 'center',
@@ -18,6 +20,12 @@ var btnStyle = {
     marginRight: '5px',
     height: '25px'
 }
+
+// static variable is written in CAPITAL LETTERs
+var API_KEY = '123456789';
+
+var CAT_URL = `http://localhost:63000/cat?api_key=${API_KEY}`;
+var DOG_URL = `http://localhost:63000/dog?api_key=${API_KEY}`;
 
 // make a new component, name Title
 class HomePage extends React.Component {
@@ -133,7 +141,9 @@ class HomePage extends React.Component {
             catLikeCount: 0,
             dogLikeCount: 0,
             catString: '',
-            dogString: ''
+            dogString: '',
+            dogImageUrl: '',
+            catImageUrl: ''
         }
 
         // glue winnerClickHandler to <HomePage>
@@ -142,8 +152,45 @@ class HomePage extends React.Component {
 
         this.likeClickHandler = this.likeClickHandler.bind(this);
         this.dislikeClickHandler = this.dislikeClickHandler.bind(this);
-        
-        
+    }
+
+    componentDidMount() {
+        console.log('Inside componentDidMount');
+        this.fetchCatDogImages();
+    }
+
+    fetchCatImage() {
+        axios.get(CAT_URL)
+        .then(function(response) {
+            var imageUrl = response.data.imageUrl;
+            
+            this.setState(function(prevState) {
+                return ({
+                    catImageUrl: imageUrl
+                });
+            });
+            // console.log(this.state.catImageUrl);    
+        }.bind(this))
+    }
+
+    fetchDogImage() {
+        // use axios to get data
+        axios.get(DOG_URL)
+        .then(function(response) {
+
+            // partial state/shallow merge
+            this.setState(function(prevState){
+                return({
+                    dogImageUrl: response.data.imageUrl
+                });  
+            });
+            // console.log(this.state.dogImageUrl);
+        }.bind(this));
+    }
+
+    fetchCatDogImages() {
+        this.fetchCatImage();
+        this.fetchDogImage();
     }
 
     render() {
@@ -163,7 +210,7 @@ class HomePage extends React.Component {
                         winningString={this.state.catString}
 
                         petname={'Super Cat'} 
-                        petimageurl={catimageurl} 
+                        petimageurl={this.state.catImageUrl} 
                         petalt={'cat picture'} 
                     />
 
@@ -175,7 +222,7 @@ class HomePage extends React.Component {
                         winningString={this.state.dogString}
 
                         petname={'Cynical Dog'}
-                        petimageurl={dogimageurl}
+                        petimageurl={this.state.dogImageUrl}
                         petalt={'dog picture'}
                     />
                 </div>
