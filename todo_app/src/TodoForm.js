@@ -13,19 +13,22 @@ class TodoForm extends React.Component {
     handleFormSubmit(event) {
         // stop the DOM form from sending POST request to the server
         event.preventDefault();
-        console.log(this.refInput.value);
+        
+        var todo = this.refInput.value;
+        this.props.onNewTodoItem(todo);
     }
 
     handleRefInputEvent(refInput) {
-        // console.log('handleRefInputEvent')
+        // console.log(refInput);
         this.refInput = refInput;
+        
     }
 
     render() {
 
         return(
-            <form onSubmit={this.handleFormSubmit}>
-                <input type="text" placeholder="Add a todo item" ref={this.handleRefInputEvent} />
+            <form className="form-group" onSubmit={this.handleFormSubmit}>
+                <input className="form-control" type="text" placeholder="Add a todo item" ref={this.handleRefInputEvent} />
             </form>
         )
     }
