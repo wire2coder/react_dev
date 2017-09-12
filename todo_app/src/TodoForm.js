@@ -21,6 +21,8 @@ class TodoForm extends React.Component {
     handleRefInputEvent(refInput) {
         // console.log(refInput);
         this.refInput = refInput;
+        this.refInput.focus()
+        
         
     }
 
