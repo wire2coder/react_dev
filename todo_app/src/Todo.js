@@ -28,9 +28,7 @@ class Todo extends React.Component {
 
             // use concat because the method does not change/mutate the data, pure function
             var todos = prevState.todos.concat(todoItem);
-
-            console.log(todos);
-
+            
             return {
                 todos: todos
             };
