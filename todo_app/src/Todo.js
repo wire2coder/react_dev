@@ -10,7 +10,7 @@ class Todo extends React.Component {
         super(props);
 
         this.state = {
-            todos: []
+            todos: ['task1', 'task2']
         };
 
         // bind execution context 
@@ -20,7 +20,7 @@ class Todo extends React.Component {
 
     handleNewTodoItem(todo) {
         this.setState(function(prevState) {
-            // use concat because the method does not change the data, pure function
+            // use concat because the method does not change/mutate the data, pure function
             var todos = prevState.todos.concat(todo);
 
             return {
