@@ -10,7 +10,7 @@ class Todo extends React.Component {
         super(props);
 
         this.state = {
-            todos: ['task1', 'task2']
+            todos: []
         };
 
         // bind execution context 
@@ -20,8 +20,16 @@ class Todo extends React.Component {
 
     handleNewTodoItem(todo) {
         this.setState(function(prevState) {
+
+            var todoItem = {
+                todo: todo,
+                id: Date.now().toString()
+            }
+
             // use concat because the method does not change/mutate the data, pure function
-            var todos = prevState.todos.concat(todo);
+            var todos = prevState.todos.concat(todoItem);
+
+            console.log(todos);
 
             return {
                 todos: todos
@@ -30,17 +38,26 @@ class Todo extends React.Component {
     }
 
     handleDeleteButtonClick(event) {        
-
-        var index = Number(event.target.value);
+        // the event thing
+        var id = event.target.value;
 
         this.setState(function(prevState) {
-            // var todos = prevState.todos;
+         
+            var todos = prevState.todos;
+            var index = null;
+
+            for (var i=0; i<todos.length; ++i) {
+                if(todos[i].id === id) {
+                    index = i;
+                    break;
+                }
+            }
            
             // do stuff so you don't mutate/change state
-            var newTodos = prevState.todos.slice(0, index).concat( prevState.todos.slice(index + 1) )
+            todos = todos.slice(0, index).concat( todos.slice(index + 1) )
 
             return {
-                todos: newTodos
+                todos: todos
             }
         })
     }

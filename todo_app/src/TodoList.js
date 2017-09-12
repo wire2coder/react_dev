@@ -7,7 +7,14 @@ var TodoList = function(props) {
     var todoList = [];
 
     for(var i=0; i < props.todos.length; i++) {
-        todoList.push( <TodoItem todo={props.todos[i]} index = {i} onDeleteButtonClick={props.handleDeleteButtonClick} /> )
+        todoList.push( 
+            <TodoItem 
+                todo= {props.todos[i].todo} 
+                key = {props.todos[i].id}
+                onDeleteButtonClick={props.handleDeleteButtonClick} 
+                id = {props.todos[i].id}
+            /> 
+        )
     }
 
     // props.todos.forEach(function(item) {
