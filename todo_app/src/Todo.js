@@ -16,6 +16,7 @@ class Todo extends React.Component {
         // bind execution context 
         this.handleNewTodoItem = this.handleNewTodoItem.bind(this);
         this.handleDeleteButtonClick = this.handleDeleteButtonClick.bind(this);
+        this.handleCheckboxClick = this.handleCheckboxClick.bind(this);
     }
 
     handleNewTodoItem(todo) {
@@ -23,7 +24,8 @@ class Todo extends React.Component {
 
             var todoItem = {
                 todo: todo,
-                id: Date.now().toString()
+                id: Date.now().toString(),
+                completed: false
             }
 
             // use concat because the method does not change/mutate the data, pure function
@@ -51,6 +53,9 @@ class Todo extends React.Component {
                 }
             }
            
+            // debug
+            // console.log(todos[index]);
+
             // do stuff so you don't mutate/change state
             todos = todos.slice(0, index).concat( todos.slice(index + 1) )
 
@@ -60,13 +65,54 @@ class Todo extends React.Component {
         })
     }
 
+    handleCheckboxClick(event) {
+        
+         // the event thing
+         var id = event.target.value;
+         
+            this.setState(function(prevState) {
+            
+                var todos = prevState.todos;
+                var index = null;
+
+                for (var i=0; i<todos.length; ++i) {
+                    if(todos[i].id === id) {
+                        index = i;
+                        break;
+                    }
+                }
+            
+                // debug
+                // console.log(todos[index]);
+
+                // do stuff so you don't mutate/change state
+                todos = todos
+                        .slice(0, index)
+                        .concat( [ { 
+                            todo: todos[index].todo,
+                            id: todos[index].id,
+                            completed: !todos[index].completed
+                        } ] )
+                        .concat( todos.slice(index + 1) )
+
+                return {
+                    todos: todos
+                }
+            })
+
+    }
+
     render() {
 
         // return JSX
         return (
             <div>
                 <TodoForm onNewTodoItem = {this.handleNewTodoItem} />
-                <TodoList todos = {this.state.todos} handleDeleteButtonClick = {this.handleDeleteButtonClick} />
+                <TodoList 
+                    todos = {this.state.todos} 
+                    handleDeleteButtonClick = {this.handleDeleteButtonClick} 
+                    onCheckboxClick = {this.handleCheckboxClick}
+                />
                 <TodoCount todoCounts = {this.state.todos.length} />
             </div>
         )

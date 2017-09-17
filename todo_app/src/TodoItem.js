@@ -13,6 +13,8 @@ class TodoItem extends React.Component {
         this.handlePriorityClick = this.handlePriorityClick.bind(this);
     }
 
+    
+
     handlePriorityClick(event) {
         
         // increase the value of this.state.priority
@@ -26,21 +28,24 @@ class TodoItem extends React.Component {
 
     render() {
 
+        var todoItem = this.props.todoItem;
+
         // return JSX
         return (
             <li className="list-group-item"> 
                 <h3>
-                    <button 
-                        className="pull-left" 
-                        onClick={this.handlePriorityClick} > {this.state.priority} 
-                    </button>
+                    <input className="pull-left" type="checkbox" 
+                        checked={todoItem.completed} 
+                        value={todoItem.id}
+                        onChange = {this.props.onCheckboxClick}
+                    />
 
-                    { this.props.todo } 
+                    { todoItem.todo } 
 
                     <button 
                         className="btn btn-default btn-danger pull-right" 
                         onClick = { this.props.onDeleteButtonClick }
-                        value = {this.props.id} > Delete</button>
+                        value = {todoItem.id} > Delete</button>
                 </h3>    
 
             </li>

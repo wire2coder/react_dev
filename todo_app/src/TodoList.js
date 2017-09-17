@@ -9,17 +9,14 @@ var TodoList = function(props) {
     for(var i=0; i < props.todos.length; i++) {
         todoList.push( 
             <TodoItem 
-                todo= {props.todos[i].todo} 
+                todoItem= {props.todos[i]} 
                 key = {props.todos[i].id}
+
                 onDeleteButtonClick={props.handleDeleteButtonClick} 
-                id = {props.todos[i].id}
+                onCheckboxClick = {props.onCheckboxClick}
             /> 
         )
     }
-
-    // props.todos.forEach(function(item) {
-    //     todoList.push( <TodoItem todo={item} onDeleteButtonClick={props.handleDeleteButtonClick} /> )
-    // })
 
     // return JSX
     return (
