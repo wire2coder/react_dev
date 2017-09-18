@@ -1,0 +1,5 @@
+const friends = [
+		{name:'Chandler', img: 'https://www.missmalini.com/wp-content/uploads/2014/09/Chandler-Bing1.jpg'},
+		{name: 'Joey', img: 'https://s-media-cache-ak0.pinimg.com/236x/e2/ec/89/e2ec892e4ea3611027d5a9b545624005.jpg'},
+		{name: 'Ross', img: 'http://cdn01.ts.infobae.com/adjuntos/164/imagenes/011/068/0011068055.jpg'}
+	];
