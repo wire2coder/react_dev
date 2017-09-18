@@ -41,6 +41,8 @@ class TodoForm extends React.Component {
             }
         })
 
+        this.props.onTodoSearch(asdf);
+
     }
 
     handleRefInputEvent(refInput) {
@@ -55,7 +57,7 @@ class TodoForm extends React.Component {
                 <input 
                     className="form-control" 
                     type="text" 
-                    placeholder="Add a todo item" 
+                    placeholder="Type to search or press enter to add todo" 
                     ref={this.handleRefInputEvent} 
                     onChange={this.handleOnChange}
                     value={this.state.todoText}

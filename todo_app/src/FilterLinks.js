@@ -12,22 +12,27 @@ var FilterLinks = function(props) {
         // return JSX
         return (
             <div>
+
                 {'Display: '}
+
                 <Link onFilterChange = 
                     {props.onFilterChange} 
-                    filterName={ALL} 
+                    filterName={ALL}  
                     currentFilter={props.currentFilter}
-                />
+                > {ALL} </Link>
+
                 <Link onFilterChange = 
                     {props.onFilterChange} 
                     filterName={ACTIVE} 
                     currentFilter={props.currentFilter}
-                />
+                > {ACTIVE} </Link>
+
                 <Link onFilterChange = 
                     {props.onFilterChange} 
                     filterName={COMPLETED} 
                     currentFilter={props.currentFilter}
-                />
+                > {COMPLETED} </Link>
+
             </div>
         );
 }
@@ -60,7 +65,7 @@ var Link = function(props) {
             } } 
         > 
 
-            {props.filterName} 
+            <strong> {props.children} </strong>
         </a>
     )
 }

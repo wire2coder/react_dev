@@ -16,6 +16,7 @@ class Todo extends React.Component {
         super(props);
 
         this.state = {
+            searchTerm: '',
             currentFilter: ALL,
             todos: []
         };
@@ -26,6 +27,7 @@ class Todo extends React.Component {
         this.handleCheckboxClick = this.handleCheckboxClick.bind(this);
         this.handleFilterChange = this.handleFilterChange.bind(this);
         this.filterTodos = this.filterTodos.bind(this);
+        this.handleTodoSearch = this.handleTodoSearch.bind(this);
     }
 
     handleNewTodoItem(todo) {
@@ -41,7 +43,8 @@ class Todo extends React.Component {
             var todos = prevState.todos.concat(todoItem);
             
             return {
-                todos: todos
+                todos: todos,
+                searchTerm: ''
             };
         });
     }
@@ -125,13 +128,31 @@ class Todo extends React.Component {
         })
     }
 
+    handleTodoSearch(searchTerm) {
+        // this function handles the search functionality in the input box
+        
+        this.setState(function() {
+            return {
+                searchTerm: searchTerm
+            }
+        })
+    }
+
     filterTodos() {
         var todos = this.state.todos;
         var currentFilter = this.state.currentFilter;
         var filteredTodos = [];
 
+        var searchTerm = this.state.searchTerm;
+
         for(var i=0; i<todos.length; i++) {
             var todoItem = todos[i];
+
+            // search logic, if typed input does not match the todoItem
+            // do not process, if match then process
+            if(todoItem.todo.indexOf(searchTerm) === -1) {
+                continue;
+            }
 
             if (currentFilter === COMPLETED && !todoItem.completed) {
                 continue;
@@ -153,7 +174,10 @@ class Todo extends React.Component {
         // return JSX
         return (
             <div>
-                <TodoForm onNewTodoItem = {this.handleNewTodoItem} />
+                <TodoForm 
+                    onTodoSearch={this.handleTodoSearch}
+                    onNewTodoItem = {this.handleNewTodoItem} 
+                />
                 <FilterLinks 
                     onFilterChange = {this.handleFilterChange} 
                     currentFilter = {this.state.currentFilter}
@@ -163,7 +187,9 @@ class Todo extends React.Component {
                     handleDeleteButtonClick = {this.handleDeleteButtonClick} 
                     onCheckboxClick = {this.handleCheckboxClick}
                 />
-                <TodoCount todoCounts = {todos.length} />
+                <TodoCount 
+                    todoCounts = {todos.length} 
+                />
             </div>
         )
     }
