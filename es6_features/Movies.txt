@@ -1,0 +1,38 @@
+var movies = [
+	  {
+		name: "The Shawshank Redemption",
+		year: 1994,
+		rating: 9.2,
+		category: 'Crime drama'
+	  },
+	  {
+		name: "The Godfather",
+		year: 1972,
+		rating: 9.2,
+		category: 'Crime drama'
+	  },
+	  {
+		name: "Pulp Fiction",
+		year: 1994,
+		rating: 8.9,
+		category: 'Crime drama'
+	  },
+	  {
+		name: "Fight Club",
+		year: 1999,
+		rating: 8.8,
+		category: 'Action drama'
+	  },
+	  {
+		name: "Inception",
+		year: 2010,
+		rating: 8.7,
+		category: 'Sci-fi'
+	  },
+	  {
+		name: "Interstellar",
+		year: 2014,
+		rating: 8.5,
+		category: 'Sci-fi'
+	  }
+	]
