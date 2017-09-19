@@ -100,14 +100,20 @@ class Todo extends React.Component {
             this.setState(function(prevState) {
             
                 var todos = prevState.todos;
-                var index = null;
 
+                /*
                 for (var i=0; i<todos.length; ++i) {
                     if(todos[i].id === id) {
                         index = i;
                         break;
                     }
                 }
+                */
+
+                var index = todos.findIndex(function(todo) {
+                    // return the position of the array
+                    return (todo.id === id)
+                })
             
                 // debug
                 // console.log(todos[index]);

@@ -64,7 +64,7 @@
 
 // document.getElementById('root').innerHTML = friendUI;
 
-
+// an array
 var movies = [
     {
       name: "The Shawshank Redemption",
@@ -129,3 +129,19 @@ var filteredMoives3 = movies.filter(function(movie) {
 })
 
 console.log(filteredMoives3)
+
+// find
+var find1 = movies.find(function(movie) {
+  // return true or false
+  return movie.name === 'Fight Club';
+})
+
+console.log(find1);
+
+// findIndex
+var find2 = movies.findIndex(function(movie) {
+  // return true or false
+  return movie.name === 'Fight Club';
+})
+
+console.log(find2);
