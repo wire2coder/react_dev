@@ -1,6 +1,6 @@
-var React = require('react');
+var React, {Component} = require('react');
 
-class TodoItem extends React.Component {
+class TodoItem extends Component {
 
     constructor(props) {
         super(props);

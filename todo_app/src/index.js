@@ -1,10 +1,12 @@
 var React = require('react');
-var ReactDom = require('react-dom');
+
+// var ReactDom = require('react-dom');
+var {render} = require('react-dom');
 
 var App = require('./App.js');
 
 
-ReactDom.render(
+render(
     <App />
     ,document.getElementById("root")
 )

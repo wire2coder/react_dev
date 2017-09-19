@@ -5,10 +5,15 @@ var TodoList = require('./TodoList.js');
 var TodoCount = require('./TodoCount.js');
 var FilterLinks = require('./FilterLinks.js');
 
+/*
 var constants = require('./constants.js');
 var ALL = constants.ALL;
 var COMPLETED = constants.COMPLETED;
 var ACTIVE = constants.ACTIVE;
+*/
+const {ALL, COMPLETED, ACTIVE} = require('./constants.js')
+
+
 
 class Todo extends React.Component {
 
@@ -31,7 +36,9 @@ class Todo extends React.Component {
     }
 
     handleNewTodoItem(todo) {
-        this.setState(function(prevState) {
+        // this.setState(function(prevState) {
+        // use de-structuring
+        this.setState(function( {searchTerm, todos} ) {
 
             var todoItem = {
                 todo: todo,
@@ -40,7 +47,7 @@ class Todo extends React.Component {
             }
 
             // use concat because the method does not change/mutate the data, pure function
-            var todos = prevState.todos.concat(todoItem);
+            todos = todos.concat(todoItem);
             
             return {
                 todos: todos,
@@ -205,24 +212,34 @@ class Todo extends React.Component {
     }
 
     render() {
-
         var todos = this.filterTodos();
+
+        // we are using ES6 syntactic SUGAR
+        const {
+            state: {currentFilter},
+            handleTodoSearch,
+            handleNewTodoItem,
+            handleFilterChange,
+            handleDeleteButtonClick,
+            handleCheckboxClick
+
+        } = this; // the object/this
 
         // return JSX
         return (
             <div>
                 <TodoForm 
-                    onTodoSearch={this.handleTodoSearch}
-                    onNewTodoItem = {this.handleNewTodoItem} 
+                    onTodoSearch={handleTodoSearch}
+                    onNewTodoItem = {handleNewTodoItem} 
                 />
                 <FilterLinks 
-                    onFilterChange = {this.handleFilterChange} 
-                    currentFilter = {this.state.currentFilter}
+                    onFilterChange = {handleFilterChange} 
+                    currentFilter = {currentFilter}
                 />
                 <TodoList 
                     todos = {todos} 
-                    handleDeleteButtonClick = {this.handleDeleteButtonClick} 
-                    onCheckboxClick = {this.handleCheckboxClick}
+                    handleDeleteButtonClick = {handleDeleteButtonClick} 
+                    onCheckboxClick = {handleCheckboxClick}
                 />
                 <TodoCount 
                     todoCounts = {todos.length} 
