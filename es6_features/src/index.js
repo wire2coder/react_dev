@@ -122,5 +122,10 @@ movies.forEach(function(movie) {
     
 })
 
-
 // filter() method, true or false
+var filteredMoives3 = movies.filter(function(movie) {
+  // return true or false
+    return (movie.rating > 8.9) 
+})
+
+console.log(filteredMoives3)
