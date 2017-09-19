@@ -51,13 +51,14 @@ class Todo extends React.Component {
 
     handleDeleteButtonClick(event) {        
         // the event thing
-        var id = event.target.value;
+        var id1 = event.target.value;
 
         this.setState(function(prevState) {
          
             var todos = prevState.todos;
             var index = null;
 
+            /*
             for (var i=0; i<todos.length; ++i) {
                 if(todos[i].id === id) {
                     index = i;
@@ -70,9 +71,23 @@ class Todo extends React.Component {
 
             // do stuff so you don't mutate/change state
             todos = todos.slice(0, index).concat( todos.slice(index + 1) )
+            */
+
+            // use filter() method
+            var filteredTodo = todos.filter(function(todo) {
+                /*
+                if (todo.id === id1) {
+                    return false;
+                } else {
+                    return true;
+                }
+                */
+                // if todo.id does not match, add the item into filteredTodo[]
+                return (todo.id !== id1)
+            })
 
             return {
-                todos: todos
+                todos: filteredTodo
             }
         })
     }
@@ -141,10 +156,12 @@ class Todo extends React.Component {
     filterTodos() {
         var todos = this.state.todos;
         var currentFilter = this.state.currentFilter;
-        var filteredTodos = [];
-
         var searchTerm = this.state.searchTerm;
 
+        var filteredTodos = [];
+
+        // refactor these junk with true/false filteredMethod
+        /*
         for(var i=0; i<todos.length; i++) {
             var todoItem = todos[i];
 
@@ -164,7 +181,21 @@ class Todo extends React.Component {
             filteredTodos.push(todoItem);
         }
 
+        */
+
+        filteredTodos = todos.filter(function(todoItem) {
+
+            if ( todoItem.todo.indexOf(searchTerm) === -1 
+            || (currentFilter === COMPLETED && !todoItem.completed) 
+            || (currentFilter === ACTIVE && todoItem.completed) ) {
+                return false;
+            }
+
+            return true;
+        });
+
         return filteredTodos;
+
     }
 
     render() {
