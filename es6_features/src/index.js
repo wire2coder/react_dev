@@ -1,68 +1,70 @@
-// // import React from 'react';
-// // import ReactDOM from 'react-dom';
-// // import './index.css';
-// // import App from './App';
-// // import registerServiceWorker from './registerServiceWorker';
+var React = require('react');
+var ReactDOM = require('react-dom');
 
-// // ReactDOM.render(<App />, document.getElementById('root'));
-// // registerServiceWorker();
+var App = require('./App.js');
 
-// // Imperitive
-// // var numbers = [1,4,5,8,33,27];
-// // var sum = 0;
+ReactDOM.render(
+  <App />
+  ,document.getElementById('root')
+);
+ 
 
-// // for(var i=0; i<numbers.length; i++) {
-// //     sum = sum + numbers[i];
-// // }
+// Imperitive
+// var numbers = [1,4,5,8,33,27];
+// var sum = 0;
 
-// // console.log(sum);
+// for(var i=0; i<numbers.length; i++) {
+//     sum = sum + numbers[i];
+// }
 
-// // sum = 0;
+// console.log(sum);
 
-// // Declaretive **
-// // // the forEach() method 'abstract' the for(var i=0; i<numbers.length; i++) line
-// // numbers.forEach(function(item1) {
-// //     // console.log(item1);
-// //     sum += item1;
-// // })
+// sum = 0;
 
-// // console.log(sum);
+// Declaretive **
+// // the forEach() method 'abstract' the for(var i=0; i<numbers.length; i++) line
+// numbers.forEach(function(item1) {
+//     // console.log(item1);
+//     sum += item1;
+// })
 
-// // var array1 = [1,4,3,6,8,5,7];
+// console.log(sum);
 
-// // make array2 to have double the value of array1
-// // var array2 = [];
+// var array1 = [1,4,3,6,8,5,7];
 
-// // use forEach
-// // array1.forEach(function(item1) {
-//     // array2.push(item1 * item1);
-// // })
+// make array2 to have double the value of array1
+// var array2 = [];
+
+// use forEach
+// array1.forEach(function(item1) {
+    // array2.push(item1 * item1);
+// })
 
 
-// // now use MAP 'method' instead
-// // array2 = array1.map(function(item1) {
-// //     return ( item1 * item1 );
-// // })
+// now use MAP 'method' instead
+// array2 = array1.map(function(item1) {
+//     return ( item1 * item1 );
+// })
 
-// // console.log(array1);
-// // console.log(array2);
+// console.log(array1);
+// console.log(array2);
 
-// // const friends = [
-// //     {name:'Chandler', img: 'https://www.missmalini.com/wp-content/uploads/2014/09/Chandler-Bing1.jpg'},
-// //     {name: 'Joey', img: 'https://s-media-cache-ak0.pinimg.com/236x/e2/ec/89/e2ec892e4ea3611027d5a9b545624005.jpg'},
-// //     {name: 'Ross', img: 'http://cdn01.ts.infobae.com/adjuntos/164/imagenes/011/068/0011068055.jpg'}
-// // ];
+// const friends = [
+//     {name:'Chandler', img: 'https://www.missmalini.com/wp-content/uploads/2014/09/Chandler-Bing1.jpg'},
+//     {name: 'Joey', img: 'https://s-media-cache-ak0.pinimg.com/236x/e2/ec/89/e2ec892e4ea3611027d5a9b545624005.jpg'},
+//     {name: 'Ross', img: 'http://cdn01.ts.infobae.com/adjuntos/164/imagenes/011/068/0011068055.jpg'}
+// ];
 
-// // var friendUI = friends.map(function(theItem) {
-// //     return (
-// //         `
-// //         <h1>${theItem.name}</h1>
-// //         <p> <img src="${theItem.img}" style="height:300px; width:300px" />
-// //         `
-// //     )
-// // })
+// var friendUI = friends.map(function(theItem) {
+//     return (
+//         `
+//         <h1>${theItem.name}</h1>
+//         <p> <img src="${theItem.img}" style="height:300px; width:300px" />
+//         `
+//     )
+// })
 
-// // document.getElementById('root').innerHTML = friendUI;
+// document.getElementById('root').innerHTML = friendUI;
 
 // // an array
 // var movies = [
@@ -232,7 +234,7 @@
 
 // printPersonDetails(person2)
 
-function filterEvenNumber(number) {
+// function filterEvenNumber(number) {
   // arguments is a built-in variable
 
   // var evenArray = [];
@@ -245,86 +247,86 @@ function filterEvenNumber(number) {
   //   }
   // }
 
-  //   return evenArray;
+//   //   return evenArray;
 
-  // very interesting line of code
-  var jim1 = Array.prototype.filter.call(arguments, function(item) {
-    return (item % 2 === 0)
-  })
+//   // very interesting line of code
+//   var jim1 = Array.prototype.filter.call(arguments, function(item) {
+//     return (item % 2 === 0)
+//   })
 
-  return jim1;
+//   return jim1;
 
-}
-console.log( filterEvenNumber(2,8,1,4,5,6,6,7)  ) 
+// }
+// console.log( filterEvenNumber(2,8,1,4,5,6,6,7)  ) 
 
-// now use the 'spread/convert to array' operator
-function filter2(...number) {
+// // now use the 'spread/convert to array' operator
+// function filter2(...number) {
 
-  return number.filter(function(asdf) {
-    // return true or false
-    return ( asdf%2 === 0 )
-  })
+//   return number.filter(function(asdf) {
+//     // return true or false
+//     return ( asdf%2 === 0 )
+//   })
 
-}
+// }
 
-// console.log( filter2(6,3,8,5,3,2,8,3) ) 
+// // console.log( filter2(6,3,8,5,3,2,8,3) ) 
 
-// REST/convert to array
+// // REST/convert to array
 
-function addDonation(donationType, ...donations) {
-  let totalDonation = 0;
+// function addDonation(donationType, ...donations) {
+//   let totalDonation = 0;
 
   // for( let i=1; i < arguments.length; i++) {
   //   // console.log('donation: ', arguments[i])
   //   totalDonation = totalDonation + arguments[i];
   // }
 
-  totalDonation = donations.reduce(function(prevState, item) {
-    return prevState + item;
-  }, 0);
+//   totalDonation = donations.reduce(function(prevState, item) {
+//     return prevState + item;
+//   }, 0);
 
-  return totalDonation
-}
+//   return totalDonation
+// }
 
-// console.log( addDonation( 'jim', 3,2,4,6,8,6,3 ) ) 
+// // // console.log( addDonation( 'jim', 3,2,4,6,8,6,3 ) ) 
 
 // SPREAD operator
 // combine 2 arrays and return a new array 
 // pure function, return a new array
 
-function merge(array1, array2) {
+// function merge(array1, array2) {
 
-  // extract individual items from array1 and array2 and combine them
-  // into a new array
-  // return [...array1, ...array2]
+//   // extract individual items from array1 and array2 and combine them
+//   // into a new array
+//   // return [...array1, ...array2]
 
-}
+// }
 
 // Arrow Function
-const square = function(input1) {
-  return input1 * input1
-}
+// const square = function(input1) {
+//   return input1 * input1
+// }
 
-console.log( square(4))
+// console.log( square(4))
 
-// now do the arrow function
+// // now do the arrow function
 
-const square2 = (input2)=> {
-  return input2 * input2
-}
+// const square2 = (input2)=> {
+//   return input2 * input2
+// }
 
-console.log(  square2(8) )
+// console.log(  square2(8) )
 
-let array10 = [3,6,5,3,3];
+// let array10 = [3,6,5,3,3];
 
-let jim = array10.map(function(input1) {
-  return `hello: ${input1*input1}`
-})
+// let jim = array10.map(function(input1) {
+//   return `hello: ${input1*input1}`
+// })
 
-console.log(jim)
+// console.log(jim)
 
-let jim2 = array10.map( (input1)=> input1*input1 )
-console.log(jim2)
+// let jim2 = array10.map( (input1)=> input1*input1 )
+// console.log(jim2)
 
 // make an object name show
 
@@ -343,24 +345,24 @@ console.log(jim2)
 
 // const id = name => {id: name};
 
-const id = function(name) {
-  return {id: name};
-}
+// const id = function(name) {
+//   return {id: name};
+// }
 
-console.log('id', id('jim') )
+// console.log('id', id('jim') )
 
-// make an object
-const employee = {
-  name: 'max',
-  title: 'worker',
-  dob: 1991,
-  getAge: () => {
-    var date = new Date();
-    console.log(this)
-    console.log('dob = ', this.dob);
-    return date.getFullYear() - this.dob;
-  }
-}
+// // make an object
+// const employee = {
+//   name: 'max',
+//   title: 'worker',
+//   dob: 1991,
+//   getAge: () => {
+//     var date = new Date();
+//     console.log(this)
+//     console.log('dob = ', this.dob);
+//     return date.getFullYear() - this.dob;
+//   }
+// }
 
-console.log( employee.getAge() )
+// console.log( employee.getAge() )
 
