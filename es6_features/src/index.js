@@ -267,7 +267,100 @@ function filter2(...number) {
 
 }
 
-console.log( filter2(6,3,8,5,3,2,8,3) ) 
+// console.log( filter2(6,3,8,5,3,2,8,3) ) 
 
-// REST/group and SPREAD operator
+// REST/convert to array
+
+function addDonation(donationType, ...donations) {
+  let totalDonation = 0;
+
+  // for( let i=1; i < arguments.length; i++) {
+  //   // console.log('donation: ', arguments[i])
+  //   totalDonation = totalDonation + arguments[i];
+  // }
+
+  totalDonation = donations.reduce(function(prevState, item) {
+    return prevState + item;
+  }, 0);
+
+  return totalDonation
+}
+
+// console.log( addDonation( 'jim', 3,2,4,6,8,6,3 ) ) 
+
+// SPREAD operator
+// combine 2 arrays and return a new array 
+// pure function, return a new array
+
+function merge(array1, array2) {
+
+  // extract individual items from array1 and array2 and combine them
+  // into a new array
+  // return [...array1, ...array2]
+
+}
+
+// Arrow Function
+const square = function(input1) {
+  return input1 * input1
+}
+
+console.log( square(4))
+
+// now do the arrow function
+
+const square2 = (input2)=> {
+  return input2 * input2
+}
+
+console.log(  square2(8) )
+
+let array10 = [3,6,5,3,3];
+
+let jim = array10.map(function(input1) {
+  return `hello: ${input1*input1}`
+})
+
+console.log(jim)
+
+let jim2 = array10.map( (input1)=> input1*input1 )
+console.log(jim2)
+
+// make an object name show
+
+// const show = {
+//   likes: 0,
+//   incrementLikes: function() {
+//     let self = this; // the show object 
+//     setTimeout( function() {
+//       self.likes = self.likes + 1;
+//       console.log(self.likes)
+//     }, 1000 )
+//   }
+// }
+
+
+
+// const id = name => {id: name};
+
+const id = function(name) {
+  return {id: name};
+}
+
+console.log('id', id('jim') )
+
+// make an object
+const employee = {
+  name: 'max',
+  title: 'worker',
+  dob: 1991,
+  getAge: () => {
+    var date = new Date();
+    console.log(this)
+    console.log('dob = ', this.dob);
+    return date.getFullYear() - this.dob;
+  }
+}
+
+console.log( employee.getAge() )
 
