@@ -1,34 +1,51 @@
-// import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <div className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <h2>Welcome to React</h2>
-//         </div>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
-
 var React = require('react');
+var axios = require('axios');
+
+// PAcontroller API
+  // opsvm3.turner.com:3000/api/pas
+  // met2dev2.turner.com:3000/api/pas
+
+var ALLPA_URL = `http://met2dev2.turner.com:3000/api/pas`;
+var REDDIT_URL = `http://www.reddit.com/r/reactjs.json`;
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    // state object for <App> component
+    this.state = {
+      appTitle: 'Welcome to PAcontroller'
+    };
+  }
+
+  /*
+  componentWillMount() {
+    console.log(`I am inside componentWillMount`);
+  }
+  */
+
+  componentDidMount() {
+    // console.log(`I am inside componentDidMount`);
+
+    axios.get(ALLPA_URL)
+      .then(function(results) {
+        // results is an OBJECT
+        // results.data is an ARRAY
+        // results.data.panumber
+        const pa_object = results.data.map(function(result1) {
+          // attach each result to the application state object
+          
+        })
+      })
+   
+  }
 
   render() {
     // return JSX
     return (
       <div>        
-        <h2>Harris Controller with React</h2>
+        <h2>{this.state.appTitle}</h2>
         <p>To get started, called your local Harris worker</p>
       </div>
     )
